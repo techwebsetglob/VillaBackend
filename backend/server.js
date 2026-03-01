@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/images", express.static(path.join(__dirname, "../images")));
 
 // MongoDB Connection
 const MONGO_URI =
@@ -40,14 +39,6 @@ app.use("/api/contact", contactRoutes);
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "Bright Villas API Running" });
 });
-
-// Serve static files in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-  });
-}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
