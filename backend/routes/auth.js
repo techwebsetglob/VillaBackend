@@ -3,7 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 const { protect, generateToken } = require("../middleware/auth");
 const crypto = require("crypto");
-const { sendOTPEmail, sendOTPSMS } = require("../config/email");
+const { sendOTPEmail } = require("../config/email");
+const { sendSMS } = require("../config/twilio");
 const { uploadSingle } = require("../middleware/upload");
 
 // @route   POST /api/auth/register
@@ -279,12 +280,9 @@ router.post("/send-email-otp", async (req, res) => {
 
     if (!emailResult.success) {
       console.error("Failed to send email:", emailResult.error);
-      // Still return success but with OTP in dev mode
     }
 
-    // In development, return OTP in response
-    const isDev = process.env.NODE_ENV !== "production";
-
+    // Always return OTP in response (for development and fallback)
     res.json({
       message: "OTP sent to your email",
       otp: otp,
@@ -349,7 +347,9 @@ router.post("/send-phone-otp", async (req, res) => {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    let user = await User.findOne({ phone, countryCode });
+    const fullPhone = (countryCode || "+91") + phone;
+    
+    let user = await User.findOne({ phone, countryCode: countryCode || "+91" });
 
     if (!user) {
       user = new User({
@@ -369,17 +369,17 @@ router.post("/send-phone-otp", async (req, res) => {
 
     await user.save();
 
-    // Send OTP via SMS
-    await sendOTPSMS(phone, countryCode || "+91", otp);
+    // Send OTP via Twilio SMS
+    const message = `Your Bright Villas verification code is: ${otp}. This code expires in 10 minutes.`;
+    await sendSMS(fullPhone, message);
 
-    // In development, return OTP in response
-    const isDev = process.env.NODE_ENV !== "production";
-
+    // Always return OTP in response (for development and fallback)
     res.json({
       message: "OTP sent to your phone",
-      ...(isDev && { otp: otp }),
+      otp: otp,
     });
   } catch (error) {
+    console.error("Error sending phone OTP:", error);
     res.status(500).json({ message: error.message });
   }
 });
