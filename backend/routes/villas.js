@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
       limit = 10,
     } = req.query;
 
-    let query = { };
+    let query = {};
 
     if (location) {
       query.location = { $regex: location, $options: "i" };
@@ -80,10 +80,22 @@ router.get("/", async (req, res) => {
 // @access  Public
 router.get("/featured", async (req, res) => {
   try {
-    const villas = await Villa.find({ featured: true, isAvailable: true })
+    const villas = await Villa.find({ featured: true })
       .sort({ rating: -1 })
       .limit(5);
     res.json(villas);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @route   GET /api/villas/debug
+// @desc    Debug - get all villas
+// @access  Public
+router.get("/debug", async (req, res) => {
+  try {
+    const villas = await Villa.find({});
+    res.json({ count: villas.length, villas });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
