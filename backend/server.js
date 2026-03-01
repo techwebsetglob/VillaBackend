@@ -12,6 +12,7 @@ const corsOptions = {
     "http://localhost:5173",
     "http://localhost:3001",
     "https://brightvillas.vercel.app",
+    "https://brightvillas-r5q9oym9p-websetglobs-projects.vercel.app",
     "https://brightvillasadmin.vercel.app",
   ],
   credentials: true,
