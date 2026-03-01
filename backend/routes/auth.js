@@ -287,7 +287,7 @@ router.post("/send-email-otp", async (req, res) => {
 
     res.json({
       message: "OTP sent to your email",
-      ...(isDev && { otp: otp }), // Only show OTP in development
+      otp: otp,
     });
   } catch (error) {
     console.error("Error in send-email-otp:", error);
