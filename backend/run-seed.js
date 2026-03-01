@@ -361,6 +361,8 @@ const seedDatabase = async () => {
     const MONGO_URI =
       process.env.MONGODB_URI ||
       "mongodb+srv://brightvillas:websetglob08@villa.kks1uus.mongodb.net/Villa01?appName=Villa";
+
+    console.log("📡 Connecting to:", MONGO_URI.replace(/websetglob08/, "****"));
     await mongoose.connect(MONGO_URI);
     console.log("✅ Connected to MongoDB Atlas");
 
