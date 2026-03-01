@@ -1,3 +1,7 @@
+// Use production URL for images
+const IMAGE_BASE_URL =
+  process.env.IMAGE_BASE_URL || "https://villabackend.onrender.com";
+
 const mongoose = require("mongoose");
 const Villa = require("./models/Villa");
 const User = require("./models/User");
@@ -20,59 +24,59 @@ const villasData = [
     badges: ["Best Seller", "Luxury", "Mountain View"],
     images: [
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0099.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0099.jpg`,
         isPrimary: true,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0101.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0101.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0105.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0105.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0107.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0107.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0111.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0111.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0115.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0115.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0117.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0117.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0119.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0119.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0124.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0124.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0126.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0126.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0128.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0128.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0135.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0135.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0136.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0136.jpg`,
         isPrimary: false,
       },
       {
-        url: "http://localhost:5000/images/mountain sky villa/IMG-20250708-WA0138.jpg",
+        url: `${IMAGE_BASE_URL}/images/mountain sky villa/IMG-20250708-WA0138.jpg`,
         isPrimary: false,
       },
     ],
