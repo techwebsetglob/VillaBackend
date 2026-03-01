@@ -6,7 +6,7 @@ const path = require("path");
 
 const app = express();
 
-// CORS Configuration - Allow Vercel frontend and admin
+// CORS Configuration - Allow all Vercel frontends
 const corsOptions = {
   origin: [
     "http://localhost:5173",
@@ -14,6 +14,7 @@ const corsOptions = {
     "https://brightvillas.vercel.app",
     "https://brightvillas-r5q9oym9p-websetglobs-projects.vercel.app",
     "https://brightvillas-kygi1jfva-websetglobs-projects.vercel.app",
+    "https://brightvillas-21hnkb558-websetglobs-projects.vercel.app",
     "https://brightvillasadmin.vercel.app",
   ],
   credentials: true,
