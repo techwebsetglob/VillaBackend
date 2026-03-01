@@ -353,8 +353,12 @@ const villasData = [
 
 const seedDatabase = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/Villa01");
-    console.log("✅ Connected to MongoDB");
+    // Use MongoDB Atlas URI for production
+    const MONGO_URI =
+      process.env.MONGODB_URI ||
+      "mongodb+srv://brightvillas:websetglob08@villa.kks1uus.mongodb.net/Villa01?appName=Villa";
+    await mongoose.connect(MONGO_URI);
+    console.log("✅ Connected to MongoDB Atlas");
 
     // Clear existing data
     await Villa.deleteMany({});
