@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
       limit = 10,
     } = req.query;
 
-    let query = { isAvailable: true };
+    let query = { };
 
     if (location) {
       query.location = { $regex: location, $options: "i" };
