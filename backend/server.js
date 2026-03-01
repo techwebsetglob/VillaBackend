@@ -6,8 +6,19 @@ const path = require("path");
 
 const app = express();
 
+// CORS Configuration - Allow Vercel frontend and admin
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:3001",
+    "https://brightvillas.vercel.app",
+    "https://brightvillasadmin.vercel.app",
+  ],
+  credentials: true,
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
